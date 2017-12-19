@@ -1,5 +1,5 @@
-id,summary,timeout,numberOfEnemies
-1,You are on ground floor use your weapon to kill enemy before going to 1st floor,5,1
-2,You are on first floor use your weapon to kill enemy before going to 2nd floor,10,2,
-3,You are on the second floor now use your weapon to kill enemy before going to 3rd floor,10,2
-4,You need to defuse bomb using defusing kit before bomb explodes,20,1
+id,summary,target,nextGameLevelId,locationId,enemyId
+1,You are at the {locationName} your target is to kill Enemies here,KILL_ENEMY,2,1,1
+2,You are at the {locationName} your target is to kill Enemies here,KILL_ENEMY,3,2,2
+3,You are at the {locationName} your target is to kill Enemies here,KILL_ENEMY,4,3,3
+4,You are at the {locationName}	defuse bomb using defusing kit before bomb explodes,DEFUSE_BOMB,1,4,

@@ -14,12 +14,23 @@ public class GameLevel extends Identifiable {
 
 	private String summary;
 
-	private Integer timeout;
+	private String nextGameLevelId;
 
-	public GameLevel(String id, String summary, Integer timeout) {
+	private GameLevelTarget target;
+
+	private boolean isCompleted;
+
+	private Player enemy;
+	
+	private Location location;
+
+	public GameLevel(String id, String summary, String nextGameLevelId, GameLevelTarget target, Player enemy, Location location) {
 		this.setId(id);
 		this.summary = summary;
-		this.timeout = timeout;
+		this.nextGameLevelId = nextGameLevelId;
+		this.target = target;
+		this.enemy = enemy;
+		this.location = location;
 	}
 
 	public String getSummary() {
@@ -30,11 +41,43 @@ public class GameLevel extends Identifiable {
 		this.summary = summary;
 	}
 
-	public Integer getTimeout() {
-		return timeout;
+	public boolean isCompleted() {
+		return isCompleted;
 	}
 
-	public void setTimeout(Integer timeout) {
-		this.timeout = timeout;
+	public void setCompleted(boolean isCompleted) {
+		this.isCompleted = isCompleted;
+	}
+
+	public String getNextGameLevelId() {
+		return nextGameLevelId;
+	}
+
+	public void setNextGameLevelId(String nextGameLevelId) {
+		this.nextGameLevelId = nextGameLevelId;
+	}
+
+	public GameLevelTarget getTarget() {
+		return target;
+	}
+
+	public void setTarget(GameLevelTarget target) {
+		this.target = target;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	public Player getEnemy() {
+		return enemy;
+	}
+
+	public void setEnemy(Player enemy) {
+		this.enemy = enemy;
 	}
 }

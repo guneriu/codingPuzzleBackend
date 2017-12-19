@@ -31,6 +31,12 @@ public class Player extends Identifiable {
 		this.availableBalance = 0;
 	}
 
+	public Player(String id, String name, Weapon weapon) {
+		this.setId(id);
+		this.name = name;
+		this.weapon = weapon;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -71,6 +77,12 @@ public class Player extends Identifiable {
 		this.availableBalance = availableBalance;
 	}
 
+	public void updateKillReward() {
+		int killAward = this.weapon.getKillAward();
+		int availableBalance = this.availableBalance;
+		setAvailableBalance(availableBalance + killAward);
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -91,8 +103,7 @@ public class Player extends Identifiable {
 		sb.append("Level=");
 		if (this.level != null) {
 			sb.append(this.level.getId());
-		}
-		if (this.level != null) {
+		} else {
 			sb.append(0);
 		}
 		sb.append(",");

@@ -12,11 +12,15 @@ import java.util.List;
 public class GameContents {
 
 	private List<Weapon> weapons;
+	
 	private List<GameLevel> gameLevels;
+	
+	private List<Location> locations;
 
-	public GameContents(List<Weapon> weapons, List<GameLevel> gameLevels) {
+	public GameContents(List<Weapon> weapons, List<GameLevel> gameLevels, List<Location> locations) {
 		this.weapons = weapons;
 		this.gameLevels = gameLevels;
+		this.setLocations(locations);
 	}
 
 	public List<Weapon> getWeapons() {
@@ -33,6 +37,14 @@ public class GameContents {
 
 	public void setGameLevels(List<GameLevel> gameLevels) {
 		this.gameLevels = gameLevels;
+	}
+
+	public List<Location> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(List<Location> locations) {
+		this.locations = locations;
 	}
 
 }

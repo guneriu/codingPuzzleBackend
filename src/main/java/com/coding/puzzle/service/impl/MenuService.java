@@ -79,7 +79,6 @@ public class MenuService implements IMenuService {
 			break;
 		case PURCHASE_WEAPON:
 			gameService.purchaseWeapon();
-			displayGameMenu();
 			break;
 		case HOW_TO_PLAY:
 			gameService.showHowToPlay();
@@ -87,6 +86,8 @@ public class MenuService implements IMenuService {
 			gameService.quit();
 		default:
 		}
+		logger.log(""); // empty line
+		displayGameMenu();
 	}
 
 	private void clearConsole() {

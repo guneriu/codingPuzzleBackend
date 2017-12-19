@@ -1,5 +1,5 @@
-id, name, floorNumber
-1, First Floor, 1
-2, Second Floor, 2
-3, Third Floor, 3
-4, Fourth Floor, 4
+id,name
+1,Ground Floor
+2,First Floor
+3,Second Floor
+4,Third Floor

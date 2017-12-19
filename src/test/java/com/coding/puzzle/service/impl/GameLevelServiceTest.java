@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.coding.puzzle.exceptions.ResourceNotFoundException;
 import com.coding.puzzle.models.GameLevel;
+import com.coding.puzzle.models.GameLevelTarget;
 import com.coding.puzzle.service.IGameLevelService;
 
 /**
@@ -24,7 +25,7 @@ public class GameLevelServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		gameLevels = new ArrayList<>();
-		gameLevel = new GameLevel("1", "level1", 10);
+		gameLevel = new GameLevel("1", "level1", "2", GameLevelTarget.KILL_ENEMY, null, null);
 		gameLevels.add(gameLevel);
 		gameLevelService = new GameLevelService(gameLevels);
 	}
@@ -41,7 +42,8 @@ public class GameLevelServiceTest {
 		Assert.assertNotNull(actualModel);
 		Assert.assertEquals(gameLevel.getId(), actualModel.getId());
 		Assert.assertEquals(gameLevel.getSummary(), actualModel.getSummary());
-		Assert.assertEquals(gameLevel.getTimeout(), actualModel.getTimeout());
+		Assert.assertEquals(gameLevel.getNextGameLevelId(), actualModel.getNextGameLevelId());
+		Assert.assertEquals(gameLevel.getTarget(), actualModel.getTarget());
 	}
 
 	@Test(expected = ResourceNotFoundException.class)
