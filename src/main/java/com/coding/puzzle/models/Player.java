@@ -20,6 +20,8 @@ public class Player extends Identifiable {
 
 	private Integer experience;
 
+	private Integer health;
+	
 	private Integer availableBalance;
 
 	private GameLevel level;
@@ -29,12 +31,14 @@ public class Player extends Identifiable {
 		this.name = name;
 		this.experience = 0;
 		this.availableBalance = 0;
+		this.health = 100;
 	}
 
 	public Player(String id, String name, Weapon weapon) {
 		this.setId(id);
 		this.name = name;
 		this.weapon = weapon;
+		this.health = 100;
 	}
 
 	public String getName() {
@@ -60,6 +64,10 @@ public class Player extends Identifiable {
 	public void setExperience(Integer experience) {
 		this.experience = experience;
 	}
+	
+	public void addExperience(Integer experience) {
+		this.experience += experience;
+	}
 
 	public GameLevel getLevel() {
 		return level;
@@ -77,10 +85,24 @@ public class Player extends Identifiable {
 		this.availableBalance = availableBalance;
 	}
 
-	public void updateKillReward() {
-		int killAward = this.weapon.getKillAward();
-		int availableBalance = this.availableBalance;
-		setAvailableBalance(availableBalance + killAward);
+	public void addBalance(Integer balance) {
+		this.availableBalance += balance;
+	}
+
+	public boolean isAlive() {
+		return health > 1;
+	}
+	
+	public Integer getHealth() {
+		return health;
+	}
+
+	public void setHealth(Integer health) {
+		this.health = health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
 	}
 
 	@Override
@@ -100,12 +122,13 @@ public class Player extends Identifiable {
 		sb.append("Experience=");
 		sb.append(this.experience);
 		sb.append(",");
-		sb.append("Level=");
+		sb.append("Health=");
+		sb.append(this.health);
+		sb.append(",");
 		if (this.level != null) {
+			sb.append("Level=");
 			sb.append(this.level.getId());
-		} else {
-			sb.append(0);
-		}
+		} 
 		sb.append(",");
 		sb.append("Weapon=");
 		if (this.weapon == null) {

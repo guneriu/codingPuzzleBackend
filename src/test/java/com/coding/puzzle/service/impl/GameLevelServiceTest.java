@@ -25,9 +25,10 @@ public class GameLevelServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		gameLevels = new ArrayList<>();
-		gameLevel = new GameLevel("1", "level1", "2", GameLevelTarget.KILL_ENEMY, null, null);
+		gameLevel = new GameLevel("1", "level1", "2", GameLevelTarget.FIGHT, null, null);
 		gameLevels.add(gameLevel);
-		gameLevelService = new GameLevelService(gameLevels);
+		gameLevelService = new GameLevelService();
+		gameLevelService.setGameLevels(gameLevels);
 	}
 
 	@Test

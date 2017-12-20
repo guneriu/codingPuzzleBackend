@@ -13,5 +13,8 @@ import com.coding.puzzle.models.Weapon;
  *
  */
 public interface IPurchaseService {
-	public Weapon purchaseWeapon(final String weaponId, final Player player) throws ForbiddenException, ResourceNotFoundException;
+	public Weapon purchaseWeapon(final String weaponId, final Player player)
+			throws ForbiddenException, ResourceNotFoundException;
+
+	public void purchaseLife(final Player player);
 }

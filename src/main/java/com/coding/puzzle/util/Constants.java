@@ -28,8 +28,12 @@ public final class Constants {
 	public static final String START_GAME_LEVEL_ID = "1";
 
 	public static final String KILL_KEY = "K";
+	
+	public static final String DEFUSE_BOMB = "D";
+	
+	public static final String DEFUSING_KIT = "Bomb Defusal Kit";
 
-	public static final int TARGET_MISS_THRESHOLD = 2;
+	public static final int LEVEL_COMPLETE_EXPERIENCE = 25;
 
 	public interface ErrorMessages {
 		String RECORD_NOT_FOUND = "%1$s not found, id:%2$s";

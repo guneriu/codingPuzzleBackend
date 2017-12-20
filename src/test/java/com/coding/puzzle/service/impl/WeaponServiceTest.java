@@ -24,9 +24,10 @@ public class WeaponServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		weapons = new ArrayList<>();
-		weapon = new Weapon("1", "Knife", 10, 20);
+		weapon = new Weapon("1", "Knife", 10, 20, 10);
 		weapons.add(weapon);
-		this.weaponService = new WeaponService(weapons);
+		weaponService = new WeaponService();
+		weaponService.setWeapons(weapons);
 	}
 	
 	@Test
@@ -49,6 +50,7 @@ public class WeaponServiceTest {
 		Assert.assertEquals(weapon.getName(), actualWeapon.getName());
 		Assert.assertEquals(weapon.getPrice(), actualWeapon.getPrice());
 		Assert.assertEquals(weapon.getKillAward(), actualWeapon.getKillAward());
+		Assert.assertEquals(weapon.getDamage(), actualWeapon.getDamage());
 	}
 
 }

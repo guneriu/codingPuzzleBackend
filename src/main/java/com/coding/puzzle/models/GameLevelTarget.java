@@ -8,5 +8,5 @@ package com.coding.puzzle.models;
  *
  */
 public enum GameLevelTarget {
-	KILL_ENEMY, DEFUSE_BOMB
+	FIGHT, DEFUSE_BOMB
 }

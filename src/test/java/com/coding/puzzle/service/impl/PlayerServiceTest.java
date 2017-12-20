@@ -4,7 +4,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-public class BuildingServiceTest {
+public class PlayerServiceTest {
 
 	@Test
 	public void test() {

@@ -17,4 +17,6 @@ public interface ILocationService {
 	public List<Location> getAllLocations();
 
 	public Location getLocationById(final String id) throws ResourceNotFoundException;
+
+	void setLocations(List<Location> locations);
 }

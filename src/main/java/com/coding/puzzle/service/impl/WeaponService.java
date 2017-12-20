@@ -6,7 +6,6 @@ package com.coding.puzzle.service.impl;
 import static com.coding.puzzle.util.Constants.ErrorMessages.RECORD_NOT_FOUND;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import com.coding.puzzle.exceptions.ResourceNotFoundException;
@@ -21,13 +20,13 @@ import com.coding.puzzle.util.logging.LoggerFactory;
  *
  */
 public class WeaponService implements IWeaponService {
-	
+
 	private static Logger logger = LoggerFactory.getLogger();
 
-	private final List<Weapon> weapons;
+	private List<Weapon> weapons;
 
-	public WeaponService(List<Weapon> weapons) {
-		Objects.requireNonNull(weapons, "Weapons must not be null");
+	@Override
+	public void setWeapons(List<Weapon> weapons) {
 		this.weapons = weapons;
 	}
 
@@ -48,10 +47,12 @@ public class WeaponService implements IWeaponService {
 
 	@Override
 	public void displayAllWeapons() {
-		   // Print the list objects in tabular format.
-	    logger.log(String.format(Constants.WEAPON_TABLE_FORMAT, "ID", "Name", "Price", "KillAward"));
-	    for (Weapon weapon : weapons) {
-		    logger.log(String.format(Constants.WEAPON_TABLE_FORMAT, weapon.getId(), weapon.getName(), (Constants.DEFAULT_CURRENCY+weapon.getPrice()), (Constants.DEFAULT_CURRENCY+weapon.getKillAward())));
+		// Print the list objects in tabular format.
+		logger.log(String.format(Constants.WEAPON_TABLE_FORMAT, "ID", "Name", "Price", "KillAward"));
+		for (Weapon weapon : weapons) {
+			logger.log(String.format(Constants.WEAPON_TABLE_FORMAT, weapon.getId(), weapon.getName(),
+					(Constants.DEFAULT_CURRENCY + weapon.getPrice()),
+					(Constants.DEFAULT_CURRENCY + weapon.getKillAward())));
 		}
 	}
 }

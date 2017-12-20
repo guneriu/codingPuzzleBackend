@@ -1,6 +1,5 @@
 package com.coding.puzzle;
 
-import com.coding.puzzle.models.GameContents;
 import com.coding.puzzle.service.IGameDataInitializationService;
 import com.coding.puzzle.service.IGameLevelService;
 import com.coding.puzzle.service.IGameService;
@@ -21,16 +20,18 @@ import com.coding.puzzle.service.impl.WeaponService;
 public class GameLauncher {
 
 	public static void main(String[] args) {
-		IGameDataInitializationService gameDataInitializationService = new GameDataInitializationService();
-		GameContents gameContents = gameDataInitializationService.initializeGameContents();
-		
-		IWeaponService weaponService = new WeaponService(gameContents.getWeapons());
-		IGameLevelService gameLevelService = new GameLevelService(gameContents.getGameLevels());
+		IWeaponService weaponService = new WeaponService();
+		IGameLevelService gameLevelService = new GameLevelService();
 		IPlayerService playerService = new PlayerService();
 		IPurchaseService purchaseService = new PurchaseService(weaponService);
-		ILocationService locationService = new LocationService(gameContents.getLocations());
-		IGameService gameService = new GameService(weaponService, gameLevelService, playerService, purchaseService, locationService);
+		ILocationService locationService = new LocationService();
+		IGameDataInitializationService gameDataInitializationService = new GameDataInitializationService(weaponService,
+				gameLevelService, locationService, playerService);
+		// load game contents{weapons, game levels, locations, enemies} from config files
+		gameDataInitializationService.initializeGameContents();
+		IGameService gameService = new GameService(weaponService, gameLevelService, playerService, purchaseService);
 		IMenuService menuService = new MenuService(gameService);
+		// show game launch Menu
 		menuService.displayMainMenu();
 	}
 

@@ -22,7 +22,8 @@ public class LocationServiceTest {
 		locations = new ArrayList<>();
 		location = new Location("1", "First Floor");
 		locations.add(location);
-		this.locationService = new LocationService(locations);
+		locationService = new LocationService();
+		locationService.setLocations(locations);
 	}
 	
 	@Test

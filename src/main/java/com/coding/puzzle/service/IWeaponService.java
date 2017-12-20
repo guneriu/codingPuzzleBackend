@@ -19,4 +19,6 @@ public interface IWeaponService {
 	public Weapon getWeaponById(final String id) throws ResourceNotFoundException;
 	
 	public void displayAllWeapons();
+
+	public void setWeapons(List<Weapon> weapons);
 }

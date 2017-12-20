@@ -25,7 +25,11 @@ public class PurchaseService implements IPurchaseService {
 	}
 
 	@Override
-	public Weapon purchaseWeapon(final String weaponId, final Player player) throws ForbiddenException, ResourceNotFoundException {
+	public Weapon purchaseWeapon(final String weaponId, final Player player)
+			throws ForbiddenException, ResourceNotFoundException {
+		if (player.getWeapon() != null && weaponId.equals(player.getWeapon().getId())) {
+			return player.getWeapon();
+		}
 		Weapon weapon = weaponService.getWeaponById(weaponId);
 		if (weapon.getPrice() <= player.getAvailableBalance()) {
 			player.setAvailableBalance(player.getAvailableBalance() - weapon.getPrice());
@@ -33,6 +37,15 @@ public class PurchaseService implements IPurchaseService {
 		} else {
 			throw new ForbiddenException(NOT_ENOUGH_BALANCE);
 		}
+	}
+
+	@Override
+	public void purchaseLife(Player player) {
+		player.setHealth(100);
+		/*
+		 * detect user balance if user purchases a life, but here I'm commenting code so that user does not get out of balance 
+		 */
+		// player.setAvailableBalance(player.getAvailableBalance() - 1);
 	}
 
 }

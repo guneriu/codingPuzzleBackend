@@ -3,8 +3,6 @@
  */
 package com.coding.puzzle.service.impl;
 
-import static java.util.stream.IntStream.rangeClosed;
-
 import com.coding.puzzle.models.Menu;
 import com.coding.puzzle.service.IGameService;
 import com.coding.puzzle.service.IMenuService;
@@ -40,11 +38,26 @@ public class MenuService implements IMenuService {
 	}
 
 	public enum GameMenu {
-		PLAY("Play Game"), PURCHASE_WEAPON("Purchase Weapon"), HOW_TO_PLAY("How to play"), QUIT("Quit");
+		PLAY("Play Game"), PURCHASE_WEAPON("Purchase Weapon"), PURCHASE_LIFE("Purchase Life"), QUIT("Quit");
 
 		private final String title;
 
 		GameMenu(String title) {
+			this.title = title;
+		}
+
+		@Override
+		public String toString() {
+			return title;
+		}
+	}
+
+	public enum GameQuitMenu {
+		YES("Yes"), CANCEL("Cancel");
+
+		private final String title;
+
+		GameQuitMenu(String title) {
 			this.title = title;
 		}
 
@@ -70,6 +83,20 @@ public class MenuService implements IMenuService {
 		}
 	}
 
+	private void displayGameQuitMenu() {
+		Menu<GameQuitMenu> menu = new Menu<>("Are you sure you want to quit?", GameQuitMenu.values());
+		menu.draw();
+		switch (menu.chooseItem()) {
+		case YES:
+			gameService.quit();
+			displayGameMenu();
+			break;
+		case CANCEL:
+			return;
+		default:
+		}
+	}
+
 	private void displayGameMenu() {
 		Menu<GameMenu> menu = new Menu<>("Game menu", GameMenu.values());
 		menu.draw();
@@ -80,17 +107,14 @@ public class MenuService implements IMenuService {
 		case PURCHASE_WEAPON:
 			gameService.purchaseWeapon();
 			break;
-		case HOW_TO_PLAY:
-			gameService.showHowToPlay();
+		case PURCHASE_LIFE:
+			gameService.purchaseLife();
+			break;
 		case QUIT:
-			gameService.quit();
+			displayGameQuitMenu();
 		default:
 		}
 		logger.log(""); // empty line
 		displayGameMenu();
-	}
-
-	private void clearConsole() {
-		rangeClosed(1, 50).forEach(value -> System.out.println());
 	}
 }

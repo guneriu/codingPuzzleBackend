@@ -12,6 +12,6 @@ public interface IGameService {
 	public void resumeGame();
 	public void playGame();
 	public void purchaseWeapon();
-	public void showHowToPlay();
 	public void quit();
+	public void purchaseLife();
 }

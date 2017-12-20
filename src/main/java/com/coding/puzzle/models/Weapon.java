@@ -1,7 +1,5 @@
 package com.coding.puzzle.models;
 
-import com.coding.puzzle.util.Constants;
-
 /**
  * @author majidali
  *
@@ -18,12 +16,15 @@ public class Weapon extends Identifiable {
 	private Integer price;
 
 	private Integer killAward;
+	
+	private Integer damage;
 
-	public Weapon(String id, String name, Integer price, Integer killAward) {
+	public Weapon(String id, String name, Integer price, Integer killAward, Integer damage) {
 		this.setId(id);
 		this.name = name;
 		this.price = price;
 		this.killAward = killAward;
+		this.damage = damage;
 	}
 
 	public String getName() {
@@ -50,23 +51,11 @@ public class Weapon extends Identifiable {
 		this.killAward = killAward;
 	}
 	
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("[");
-		sb.append("Id=");
-		sb.append(this.getId());
-		sb.append(",");
-		sb.append("Name=");
-		sb.append(this.name);
-		sb.append(",");
-		sb.append("Price=");
-		sb.append(Constants.DEFAULT_CURRENCY);
-		sb.append(this.price);
-		sb.append(",");
-		sb.append("KillAward=");
-		sb.append(this.killAward);
-		sb.append("]");
-		return sb.toString();
+	public Integer getDamage() {
+		return damage;
+	}
+	
+	public void setDamage(Integer damage) {
+		this.damage = damage;
 	}
 }

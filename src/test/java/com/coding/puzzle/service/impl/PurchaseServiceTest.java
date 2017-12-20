@@ -20,7 +20,7 @@ public class PurchaseServiceTest {
 	public void setUp() throws Exception {
 		IWeaponService weaponService = Mockito.mock(WeaponService.class);
 		this.purchaseService = new PurchaseService(weaponService);
-		Weapon testWeapon = new Weapon("2", "MachineGun", 100, 100);
+		Weapon testWeapon = new Weapon("2", "MachineGun", 100, 100, 50);
 		Mockito.when(weaponService.getWeaponById("2")).thenReturn(testWeapon);
 		Mockito.when(weaponService.getWeaponById("1")).thenThrow(ResourceNotFoundException.class);
 	}

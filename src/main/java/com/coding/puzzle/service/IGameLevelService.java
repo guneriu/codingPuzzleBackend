@@ -17,4 +17,6 @@ public interface IGameLevelService {
 	public List<GameLevel> getAllGameLevels();
 
 	public GameLevel getGameLevelById(final String id) throws ResourceNotFoundException;
+
+	public void setGameLevels(List<GameLevel> gameLevels);
 }
