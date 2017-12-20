@@ -13,6 +13,7 @@ import com.coding.puzzle.models.GameLevelTarget;
 import com.coding.puzzle.models.Player;
 import com.coding.puzzle.models.Weapon;
 import com.coding.puzzle.service.IGameLevelService;
+import com.coding.puzzle.service.IGameRepositry;
 import com.coding.puzzle.service.IGameService;
 import com.coding.puzzle.service.IPlayerService;
 import com.coding.puzzle.service.IPurchaseService;
@@ -39,21 +40,24 @@ public class GameService implements IGameService {
 
 	private final IPurchaseService purchaseService;
 
+	private final IGameRepositry gameRepositry;
+
 	private Player player;
 
 	private final InputReader reader = InputReaderFactory.getInputReader();
 
 	public GameService(IWeaponService weaponService, IGameLevelService gameLevelService, IPlayerService playerService,
-			IPurchaseService purchaseService) {
+			IPurchaseService purchaseService, IGameRepositry gameRepositry) {
 		this.weaponService = weaponService;
 		this.gameLevelService = gameLevelService;
 		this.playerService = playerService;
 		this.purchaseService = purchaseService;
+		this.gameRepositry = gameRepositry;
 	}
 
 	@Override
 	public void startNewGame() {
-		player = playerService.createNewPlayer();
+		this.player = playerService.createNewPlayer();
 		GameLevel gameLevel;
 		try {
 			gameLevel = gameLevelService.getGameLevelById(Constants.START_GAME_LEVEL_ID);
@@ -65,8 +69,12 @@ public class GameService implements IGameService {
 	}
 
 	@Override
-	public void resumeGame() {
-
+	public void resumeGame() throws ResourceNotFoundException {
+		Player player = gameRepositry.getStoredGame();
+		if (player != null) {
+			this.player = player;
+			logger.log(player.toString());
+		}
 	}
 
 	@Override
@@ -199,10 +207,10 @@ public class GameService implements IGameService {
 		System.exit(0);
 	}
 
-
 	@Override
 	public void quit() {
-
+		gameRepositry.storeGame(player);
+		System.exit(0);
 	}
 
 	@Override

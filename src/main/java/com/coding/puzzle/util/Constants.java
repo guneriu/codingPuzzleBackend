@@ -18,6 +18,8 @@ public final class Constants {
 	public static final String ENEMIES_FILE_NAME = "enemies.csv";
 
 	public static final String GAME_LEVELS_FILE_NAME = "game_levels.csv";
+	
+	public static final String SAVED_GAME_FILE_NAME = System.getProperty("user.home") + "/games.ser";
 
 	public static final String DEFAULT_CURRENCY = "$";
 

@@ -3,6 +3,7 @@
  */
 package com.coding.puzzle.service.impl;
 
+import com.coding.puzzle.exceptions.ResourceNotFoundException;
 import com.coding.puzzle.models.Menu;
 import com.coding.puzzle.service.IGameService;
 import com.coding.puzzle.service.IMenuService;
@@ -77,7 +78,13 @@ public class MenuService implements IMenuService {
 			displayGameMenu();
 			break;
 		case RESUME:
-			gameService.resumeGame();
+			try {
+				gameService.resumeGame();
+				displayGameMenu();
+			} catch (ResourceNotFoundException e) {
+				logger.log(e.getMessage());
+				displayMainMenu();
+			}
 			break;
 		default:
 		}

@@ -2,6 +2,7 @@ package com.coding.puzzle;
 
 import com.coding.puzzle.service.IGameDataInitializationService;
 import com.coding.puzzle.service.IGameLevelService;
+import com.coding.puzzle.service.IGameRepositry;
 import com.coding.puzzle.service.IGameService;
 import com.coding.puzzle.service.ILocationService;
 import com.coding.puzzle.service.IMenuService;
@@ -10,6 +11,7 @@ import com.coding.puzzle.service.IPurchaseService;
 import com.coding.puzzle.service.IWeaponService;
 import com.coding.puzzle.service.impl.GameDataInitializationService;
 import com.coding.puzzle.service.impl.GameLevelService;
+import com.coding.puzzle.service.impl.GameRepositry;
 import com.coding.puzzle.service.impl.GameService;
 import com.coding.puzzle.service.impl.LocationService;
 import com.coding.puzzle.service.impl.MenuService;
@@ -29,7 +31,8 @@ public class GameLauncher {
 				gameLevelService, locationService, playerService);
 		// load game contents{weapons, game levels, locations, enemies} from config files
 		gameDataInitializationService.initializeGameContents();
-		IGameService gameService = new GameService(weaponService, gameLevelService, playerService, purchaseService);
+		IGameRepositry gameRepositry = new GameRepositry();
+		IGameService gameService = new GameService(weaponService, gameLevelService, playerService, purchaseService, gameRepositry);
 		IMenuService menuService = new MenuService(gameService);
 		// show game launch Menu
 		menuService.displayMainMenu();
