@@ -19,6 +19,10 @@ import com.coding.puzzle.service.impl.PlayerService;
 import com.coding.puzzle.service.impl.PurchaseService;
 import com.coding.puzzle.service.impl.WeaponService;
 
+/**
+ * @author majidali
+ *
+ */
 public class GameLauncher {
 
 	public static void main(String[] args) {
