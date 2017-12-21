@@ -1,0 +1,2 @@
+id,summary,target,nextGameLevelId,locationId,enemyId
+1,You are at the {locationName} your target is to kill Enemies here,FIGHT,2,1,1

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.coding.puzzle.service.impl;
+package com.coding.puzzle.repository.impl;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import com.coding.puzzle.exceptions.InternalServerException;
 import com.coding.puzzle.exceptions.ResourceNotFoundException;
 import com.coding.puzzle.models.Player;
-import com.coding.puzzle.service.IGameRepositry;
+import com.coding.puzzle.repository.IGameRepositry;
 import com.coding.puzzle.util.Constants;
 import com.coding.puzzle.util.logging.Logger;
 import com.coding.puzzle.util.logging.LoggerFactory;

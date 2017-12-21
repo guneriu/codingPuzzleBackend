@@ -102,7 +102,7 @@ public class Player extends Identifiable {
 	}
 
 	public void setHealth(int health) {
-		this.health = health;
+		this.health = health < 0 ? 0: health;
 	}
 
 	@Override

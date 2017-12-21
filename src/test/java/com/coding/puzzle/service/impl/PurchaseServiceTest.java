@@ -41,9 +41,9 @@ public class PurchaseServiceTest {
 	public void purchaseValidWeaponWithValidBalance() throws ForbiddenException, ResourceNotFoundException {
 		Player player = new Player("Majid Ali");
 		player.setAvailableBalance(200);
-		Weapon purchasedWeapon = purchaseService.purchaseWeapon("2", player);
-		Assert.assertNotNull(purchasedWeapon);
-		Assert.assertEquals(purchasedWeapon.getId(), "2");
+		purchaseService.purchaseWeapon("2", player);
+		Assert.assertNotNull(player.getWeapon());
+		Assert.assertEquals(player.getWeapon().getId(), "2");
 		Assert.assertTrue(player.getAvailableBalance() == 100);
 
 	}

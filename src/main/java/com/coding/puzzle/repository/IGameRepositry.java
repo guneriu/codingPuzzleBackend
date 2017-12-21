@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.coding.puzzle.service;
+package com.coding.puzzle.repository;
 
 import com.coding.puzzle.exceptions.ResourceNotFoundException;
 import com.coding.puzzle.models.Player;

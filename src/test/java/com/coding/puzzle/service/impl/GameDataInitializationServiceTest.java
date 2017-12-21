@@ -23,7 +23,7 @@ import com.coding.puzzle.util.parsing.FileUtil;
 
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(FileUtil.class)
+@PrepareForTest(FileUtil.class) 
 public class GameDataInitializationServiceTest {
 
 	IGameDataInitializationService gameDataInitializationService;
@@ -41,9 +41,9 @@ public class GameDataInitializationServiceTest {
 		playerService = new PlayerService();
 		gameDataInitializationService = new GameDataInitializationService(weaponService, gameLevelService, locationService, playerService);
 		List<String> gameLevels = new ArrayList<>();
-		gameLevels.add("1,You are at the {locationName} your target is to kill Enemies here,KILL_ENEMY,2,1,1");
+		gameLevels.add("1,You are at the {locationName} your target is to kill Enemies here,FIGHT,2,1,1");
 		List<String> weapons = new ArrayList<>();
-		weapons.add("1,Knife,0,10");
+		weapons.add("1,Knife,0,10,20");
 		PowerMockito.mockStatic(FileUtil.class);
 		
 		List<String> players = new ArrayList<>();

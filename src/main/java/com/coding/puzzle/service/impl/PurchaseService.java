@@ -33,6 +33,7 @@ public class PurchaseService implements IPurchaseService {
 		Weapon weapon = weaponService.getWeaponById(weaponId);
 		if (weapon.getPrice() <= player.getAvailableBalance()) {
 			player.setAvailableBalance(player.getAvailableBalance() - weapon.getPrice());
+			player.setWeapon(weapon);
 			return weapon;
 		} else {
 			throw new ForbiddenException(NOT_ENOUGH_BALANCE);
@@ -43,7 +44,8 @@ public class PurchaseService implements IPurchaseService {
 	public void purchaseLife(Player player) {
 		player.setHealth(100);
 		/*
-		 * detect user balance if user purchases a life, but here I'm commenting code so that user does not get out of balance 
+		 * detect user balance if user purchases a life, but here I'm commenting
+		 * code so that user does not get out of balance
 		 */
 		// player.setAvailableBalance(player.getAvailableBalance() - 1);
 	}

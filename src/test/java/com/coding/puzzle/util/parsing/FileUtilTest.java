@@ -1,17 +1,13 @@
 package com.coding.puzzle.util.parsing;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
-import org.junit.ClassRule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 
-import com.coding.puzzle.exceptions.ResourceNotFoundException;
+import com.coding.puzzle.exceptions.InternalServerException;
+import com.coding.puzzle.util.Constants;
 
 /**
  * @author majidali
@@ -19,24 +15,16 @@ import com.coding.puzzle.exceptions.ResourceNotFoundException;
  */
 public class FileUtilTest {
 
-	@ClassRule
-	public static TemporaryFolder tempFolder = new TemporaryFolder();
-	
-	@Test(expected=ResourceNotFoundException.class)
-	public void testReadDataWithInvalidFile() throws IOException {
-		FileUtil.readData("abc.csv");
+	@Test(expected=InternalServerException.class)
+	public void testReadDataWithInValidFile() throws IOException {
+		FileUtil.readData("/resources.csv");
 	}
 	
 	@Test
 	public void testReadDataWithValidFile() throws IOException {
-		final File tempFile = tempFolder.newFile("tempFile.csv");
-		List<String> lines = new ArrayList<>();
-		lines.add("id,name");
-		lines.add("1, Majid Ali");
-		FileUtils.writeLines(tempFile, lines);
-		List<String> response = FileUtil.readData(tempFolder.getRoot().getPath()+"/tempFile.csv");
+		List<String> response = FileUtil.readData(Constants.GAME_LEVELS_FILE_NAME);
 		Assert.assertTrue(response.size() == 1);
-		Assert.assertEquals(response.get(0), "1, Majid Ali");
+		Assert.assertEquals("1,You are at the {locationName} your target is to kill Enemies here,FIGHT,2,1,1", response.get(0));
 	}
 
 }

@@ -3,6 +3,7 @@
  */
 package com.coding.puzzle.service.impl;
 
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,8 +13,8 @@ import com.coding.puzzle.models.GameLevel;
 import com.coding.puzzle.models.GameLevelTarget;
 import com.coding.puzzle.models.Player;
 import com.coding.puzzle.models.Weapon;
+import com.coding.puzzle.repository.IGameRepositry;
 import com.coding.puzzle.service.IGameLevelService;
-import com.coding.puzzle.service.IGameRepositry;
 import com.coding.puzzle.service.IGameService;
 import com.coding.puzzle.service.IPlayerService;
 import com.coding.puzzle.service.IPurchaseService;
@@ -46,6 +47,7 @@ public class GameService implements IGameService {
 
 	private final InputReader reader = InputReaderFactory.getInputReader();
 
+	
 	public GameService(IWeaponService weaponService, IGameLevelService gameLevelService, IPlayerService playerService,
 			IPurchaseService purchaseService, IGameRepositry gameRepositry) {
 		this.weaponService = weaponService;
@@ -55,6 +57,12 @@ public class GameService implements IGameService {
 		this.gameRepositry = gameRepositry;
 	}
 
+	@Override
+	public Player getPlayer() {
+		return player;
+	}
+	
+	
 	@Override
 	public void startNewGame() {
 		this.player = playerService.createNewPlayer();
@@ -90,12 +98,12 @@ public class GameService implements IGameService {
 				logger.error(e.getMessage());
 			}
 		}
-		player.setWeapon(weapon);
 		logger.log(player.toString());
 	}
 
 	@Override
 	public void playGame() {
+		Objects.requireNonNull(player, "Player not found");
 		if (player.isAlive()) {
 			if (player.getWeapon() == null) {
 				logger.error("Please select weapon and try again.");
@@ -126,7 +134,7 @@ public class GameService implements IGameService {
 		}
 	}
 
-	public void fight(Player you, Player enemy) {
+	private void fight(Player you, Player enemy) {
 		do {
 			logger.log("Press K to attack enemy with " + player.getWeapon().getName());
 			String input = reader.readString();
@@ -209,12 +217,14 @@ public class GameService implements IGameService {
 
 	@Override
 	public void quit() {
+		Objects.requireNonNull(player, "Player not found");
 		gameRepositry.storeGame(player);
 		System.exit(0);
 	}
 
 	@Override
 	public void purchaseLife() {
+		Objects.requireNonNull(player, "Player not found");
 		purchaseService.purchaseLife(player);
 		logger.log(player.toString());
 	}
