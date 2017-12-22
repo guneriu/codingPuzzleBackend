@@ -47,4 +47,12 @@ public class PurchaseServiceTest {
 		Assert.assertTrue(player.getAvailableBalance() == 100);
 
 	}
+	
+	@Test
+	public void testPurchaseLife() throws ForbiddenException, ResourceNotFoundException {
+		Player player = new Player("Majid Ali");
+		player.setHealth(0);
+		purchaseService.purchaseLife(player);
+		Assert.assertTrue(player.getHealth() == 100);
+	}
 }

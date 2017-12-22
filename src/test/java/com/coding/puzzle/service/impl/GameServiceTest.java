@@ -3,6 +3,7 @@
  */
 package com.coding.puzzle.service.impl;
 
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -10,7 +11,6 @@ import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
-import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -29,7 +29,6 @@ import com.coding.puzzle.service.IPlayerService;
 import com.coding.puzzle.service.IPurchaseService;
 import com.coding.puzzle.service.IWeaponService;
 import com.coding.puzzle.util.Constants;
-import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.*;
 
 /**
  * @author majidali
@@ -64,9 +63,6 @@ public class GameServiceTest {
 
 	@Rule
 	public final SystemErrRule systemErrRule = new SystemErrRule().enableLog().mute();
-
-	@Rule
-	public final TextFromStandardInputStream systemInMock = emptyStandardInputStream();
 
 	@Before
 	public void setUp() throws Exception {
@@ -121,5 +117,12 @@ public class GameServiceTest {
 		gameService.startNewGame();
 		gameService.playGame();
 		Assert.assertEquals("Please select weapon and try again.", systemErrRule.getLog().trim());
+	}
+	
+	@Test
+	public void testPurchaseLife() {
+		gameService.startNewGame();
+		gameService.purchaseLife();
+		Mockito.verify(purchaseService).purchaseLife(player);
 	}
 }
