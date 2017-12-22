@@ -87,6 +87,7 @@ public class GameService implements IGameService {
 
 	@Override
 	public void purchaseWeapon() {
+		Objects.requireNonNull(player, "Player not found");
 		weaponService.displayAllWeapons();
 		Weapon weapon = null;
 		while (weapon == null) {
