@@ -79,17 +79,4 @@ public class GameServiceTest {
 		Mockito.verify(playerService).createNewPlayer();
 		Mockito.verify(gameLevelService).getGameLevelById(Constants.START_GAME_LEVEL_ID);
 	}
-
-	@Test
-	public void testPurchaseLife() {
-		gameService.startNewGame();
-		gameService.purchaseLife();
-		Mockito.verify(purchaseService).purchaseLife(player);
-	}
-
-	@Test(expected = ResourceNotFoundException.class)
-	public void testResumeGameWithoutSavedGame() throws ResourceNotFoundException {
-		gameService.resumeGame();
-		Mockito.verify(gameRepositry).getStoredGame();
-	}
 }

@@ -3,15 +3,15 @@
 CodingPuzzleBackend 
 
 Terrorists want to explode bomb in a building, Main character or hero's responsibility is to stop them from doing this. 
-Basic weapon to fight with enemies is Knife which is free. 
-A player can earn money by killing enemies, and use that money to purchase more destructive weapons.
-Character will fight with enemies in first 3 level of game at different locations. 
-To attack enemy, character has to press K, if he/she presses any other key enemy will attack character.
-In the last level of game character has to defuse bomb [within 10 seconds] using defusing kit.
-If at any level Main character is killed he can purchase life to play again. 
-I have not detected any money while purchasing a life so that user does not get out of balance :)
+Game Rules:
+1. To Play game user need to select weapon.
+2. Basic weapon to fight with enemies is Knife which is free. 
+3. To purchase other weapons user need to kill enemies and get kill reward, and use that money to purchase more destructive weapons.
+4. To attack enemy, user has to press K, if user presses any other key enemy will attack.
+5. To Defuse bomb user need to pree D [within 10 seconds] using defusing kit
+6. If user is killed at any level he can purchase life to play again. I have not detected any money while purchasing a life so that user does not get out of balance :)
 
-A player can quit at any level and resume again. But only last uncompleted game will be available for resuming.
+7. A player can quit at any level and resume again. But only last uncompleted game will be available for resuming.
 
 ### Prerequisites
 

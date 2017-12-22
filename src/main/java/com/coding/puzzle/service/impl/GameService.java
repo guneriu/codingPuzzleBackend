@@ -155,7 +155,7 @@ public class GameService implements IGameService {
 	}
 
 	private void attack(Player attacker, Player defender) {
-		int health = defender.getHealth() - attacker.getWeapon().getDamage();
+		int health = Math.max(0, (defender.getHealth() - attacker.getWeapon().getDamage()));
 		logger.log(attacker.getName() + "'s attack does " + attacker.getWeapon().getDamage() + " damage!\n");
 		logger.log(defender.getName() + "'s Health is " + health);
 		defender.setHealth(health);
