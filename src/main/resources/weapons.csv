@@ -1,6 +1,6 @@
 id,name,price,killAward,damage
 1,Knife,0,20,20
-2,Pistol,10,20,20
+2,Pistol,10,20,25
 3,Machine Gun,30,100,50
 4,Bomb Defusal Kit,50,100,0
 5,Bomb,1000,1000,100
